@@ -8,7 +8,7 @@
 
 using namespace std;
 
-int cube_size;
+int cube_size = 500;
 
 double wctime() {
     struct timeval tv;
