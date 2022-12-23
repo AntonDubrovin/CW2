@@ -14,12 +14,6 @@ using namespace std;
 
 int cube_size = 500;
 
-double wctime() {
-    struct timeval tv;
-    gettimeofday(&tv, NULL);
-    return tv.tv_sec + 1E-6 * tv.tv_usec;
-}
-
 vector<vector<vector<int>>> bfs_seq(Node *start) {
     queue<Node> q;
     q.push(*start);
