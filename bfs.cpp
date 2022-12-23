@@ -82,7 +82,7 @@ parlay::sequence<parlay::sequence<Node>> bfs_par(const Node *start) {
             parlay::parallel_for(0, neighbours.size(), [&](size_t u) {
                 const auto to = neighbours[u];
 
-                if (!visited[to.x][to.y][to.z].test_and_set(std::memory_order_relaxed)) {
+                if (!visited[to.x][to.y][to.z].test_and_set(memory_order_relaxed)) {
                     new_frontier[deg_scan_inclusive[i] + u] = to;
                 }
             });
