@@ -96,6 +96,35 @@ parlay::sequence<parlay::sequence<Node>> bfs_par(const Node *start) {
     return frontiers;
 }
 
+bool is_correct_par(const parlay::sequenct<parlay::sequence<Node>> &frontiers) {
+    bool is_correct = true;
+
+    for (int i = 0; i < frontiers.size(); i++) {
+        const parlay::sequence<Node> &frontier = frontiers[i];
+
+        for (auto node: frontier) {
+            is_correct &= (node.x + node.y + node.z == i);
+        }
+    }
+
+    return is_correct;
+}
+
+bool is_correct_seq(vector<vector<vector<int>>> &dists) {
+    bool is_correct = true;
+
+    for (int x = 0; x < dists.size(); x++) {
+        for (int y = 0; y < dists[x].size(); y++) {
+            for (int z = 0; z < dists[x][y].size(); z++) {
+                is_correct &= (dists[x][y][z] == x + y + z);
+            }
+        }
+    }
+    return is_correct;
+}
+
+
+
 int main() {
     parlay::sequence<parlay::sequence<parlay::sequence<Node>>> parallel_res;
     parlay::sequence<vector<vector<vector<int>>> sequential_res;
@@ -117,4 +146,17 @@ int main() {
         seq_timer.next("Sequential");
     }
     cout << "Sequential bfs " << seq_timer.total_time() / 5 << endl;
+    
+    for (int i = 0; i < parallel_res.size(); i++) {
+        if (!is_correct_par(parallel_res[i])) {
+            cout << "par bfs is not corrent" << endl;
+        }
+    }
+    
+    for (int i = 0; i < sequential_res.size(); i++) {
+        if (!is_correct_seq(sequential_res[i])) {
+            cout << "seq bfs is not correct" << endl;
+        }
+    }
+
 }
