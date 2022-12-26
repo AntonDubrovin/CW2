@@ -149,13 +149,13 @@ int main() {
     
     for (int i = 0; i < parallel_res.size(); i++) {
         if (!is_correct_par(parallel_res[i])) {
-            cout << "par bfs is not corrent" << endl;
+            cout << "par bfs is not correct " << i << endl;
         }
     }
     
     for (int i = 0; i < sequential_res.size(); i++) {
         if (!is_correct_seq(sequential_res[i])) {
-            cout << "seq bfs is not correct" << endl;
+            cout << "seq bfs is not correct " << i << endl;
         }
     }
 
