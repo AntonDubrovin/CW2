@@ -96,7 +96,7 @@ parlay::sequence<parlay::sequence<Node>> bfs_par(const Node *start) {
     return frontiers;
 }
 
-bool is_correct_par(const parlay::sequenct<parlay::sequence<Node>> &frontiers) {
+bool is_correct_par(const parlay::sequence<parlay::sequence<Node>> &frontiers) {
     bool is_correct = true;
 
     for (int i = 0; i < frontiers.size(); i++) {
